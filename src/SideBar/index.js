@@ -1,1 +1,1 @@
-export {default as SimpleSidebar} from './SimpleSidebar'
+export * from './SimpleSidebar'
