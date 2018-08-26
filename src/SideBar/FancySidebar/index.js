@@ -1,1 +1,1 @@
-export {default as FancySidebar} from './SimpleSidebar'
+export {default as FancySidebar} from './FancySidebar'

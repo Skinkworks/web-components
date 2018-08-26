@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 import {map} from 'lodash'
 
 import {SimpleMenuItems} from './SidebarSchema'
-import './SideBar.css'
+import '../common/SideBar.css'
 
 export default class SimpleSidebar extends Component {
 
@@ -26,7 +26,16 @@ export default class SimpleSidebar extends Component {
     }
 
     render() {
-        const {menuItems, sidebarOpen, sidebarDocked, toggleSidebar, title, children, styles} = this.props
+        const {
+            menuItems,
+            sidebarOpen,
+            sidebarDocked,
+            sidebarCollapsed,
+            toggleSidebar,
+            title,
+            children,
+            styles
+        } = this.props
 
         return (
             <ReactSidebar
@@ -42,7 +51,7 @@ export default class SimpleSidebar extends Component {
 
     renderMenu = (menuItems, title) => {
         return (
-            <div className='sidebar-container'>
+            <div className={this.getSideBarClassNames(sidebarOpen, sidebarDocked, sidebarCollapsed)}>
                 <ul className='nav nav-pills nav-stacked'>
                     { title
                         ? (<li className='sidebar-menu-item' role='presentation'>
@@ -66,13 +75,19 @@ export default class SimpleSidebar extends Component {
                     to={menuItem.routeUrl}
                     exact={false}
                     activeClassName='active-sidebar-link'
-                    key={`menu${index}`}>
+                    key={`menuItem${index}`}>
                     <div>
                         <i className={`fa ${menuItem.faIcon}`} />
-                        <span style={{paddingLeft: 10}}>{menuItem.displayName}</span>
+                        <div className='menu-item-text'>{menuItem.displayName}</div>
                     </div>
                 </NavLink>
             </li>
+        )
+    }
+
+    getSideBarClassNames = (sidebarOpen, sidebarDocked, sidebarCollapsed) => {
+        return(
+            `sidebar-container ${sidebarOpen && 'open'} ${sidebarDocked && 'docked'} ${sidebarCollapsed && 'collapsed'}`
         )
     }
 }

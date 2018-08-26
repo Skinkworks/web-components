@@ -5,7 +5,7 @@ import {NavLink} from 'react-router-dom'
 import {map} from 'lodash'
 
 import {SimpleMenuItems} from './SidebarSchema'
-import './SideBar.css'
+import '../common/SideBar.css'
 
 export default class SimpleSidebar extends Component {
 
