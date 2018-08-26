@@ -1,16 +1,14 @@
 import { combineReducers } from 'redux'
-
-// actions
-const TOGGLE_SIDEBAR_VISIBILITY = 'TOGGLE_SIDEBAR_VISIBILITY'
-const TOGGLE_SIDEBAR_DOCKED = 'TOGGLE_SIDEBAR_DOCKED'
-
-// action creators
-export const ToggleSideBarVisibility = (visible) => ({type: TOGGLE_SIDEBAR_VISIBILITY, visible})
-export const ToggleSideBarDocked = (docked) => ({type: TOGGLE_SIDEBAR_DOCKED, docked})
+import {
+    SelectSidebarVisible,
+    SelectSidebarDocked,
+    Visible,
+    Docked
+} from './commonRedux'
 
 // selectors
-const SelectSidebarVisible = (state) => state.SidebarState.Visible
-const SelectSidebarDocked = (state) => state.SidebarState.Docked
+const SelectSidebarVisible = (state) => state.SimpleSidebarState.Visible
+const SelectSidebarDocked = (state) => state.SimpleSidebarState.Docked
 
 export const SidebarSelectors = {
     SelectSidebarVisible,
@@ -42,7 +40,7 @@ function Docked(state = true, action) {
     }
 }
 
-export const SimpleSidebarReducer = combineReducers({
+export const SimpleSidebarState = combineReducers({
     Visible,
     Docked
 })
